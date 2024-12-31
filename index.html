@@ -10,6 +10,7 @@
             background-color: #F5F5F5;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
         }
 
         header {
@@ -55,12 +56,85 @@
             width: 100px;
             height: auto;
         }
+
+        .garlands {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 50px;
+        }
+
+        .garlands.left {
+            left: 0;
+        }
+
+        .garlands.right {
+            right: 0;
+        }
+
+        .garland-bulb {
+            width: 20px;
+            height: 20px;
+            margin: 5px auto;
+            border-radius: 50%;
+            background-color: #FF0000;
+            animation: blink 1s infinite alternate;
+        }
+
+        .garland-bulb:nth-child(even) {
+            background-color: #008000;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: white;
+            font-size: 1.5em;
+            animation: fall linear infinite;
+        }
+
+        .snowflake:nth-child(odd) {
+            animation-duration: 10s;
+        }
+
+        .snowflake:nth-child(even) {
+            animation-duration: 15s;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Welcome to the New Year 2025!</h1>
     </header>
+
+    <div class="garlands left">
+        <div class="garland-bulb"></div>
+        <div class="garland-bulb"></div>
+        <div class="garland-bulb"></div>
+        <div class="garland-bulb"></div>
+        <div class="garland-bulb"></div>
+    </div>
+
+    <div class="garlands right">
+        <div class="garland-bulb"></div>
+        <div class="garland-bulb"></div>
+        <div class="garland-bulb"></div>
+        <div class="garland-bulb"></div>
+        <div class="garland-bulb"></div>
+    </div>
 
     <div class="content">
         <h1>Happy Holidays!</h1>
@@ -76,5 +150,27 @@
     <footer class="footer">
         <p>&copy; 2025 New Year Celebration</p>
     </footer>
+
+    <div class="snowflakes">
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+    </div>
+
+    <script>
+        const snowflakes = document.querySelectorAll('.snowflake');
+        snowflakes.forEach(snowflake => {
+            const startLeft = Math.random() * window.innerWidth;
+            const duration = Math.random() * 10 + 5;
+            const delay = Math.random() * 5;
+
+            snowflake.style.left = `${startLeft}px`;
+            snowflake.style.animationDuration = `${duration}s`;
+            snowflake.style.animationDelay = `${delay}s`;
+        });
+    </script>
 </body>
 </html>
